@@ -56,11 +56,30 @@ Array.prototype.myEach = function(callback){
 }
 
 Array.prototype.myMap = function(callback){
-    newArray = [];
-   this.myEach(callback){
-        
-    }
+    let newArray = [];
+   this.myEach(el => newArray.push(callback(el)))
+    return newArray;
 }
 
 
+function sums(num1, num2) {
+   return num1 + num2;
+}
+
+Array.prototype.myReduce = function (callback, user_input){
+        
+        if (user_input){
+            let accum = user_input
+            this.myEach(el => 
+                accum = callback(accum, el)
+                )
+                return accum;          
+        }else{
+            let accum = this[0];
+            this.slice(1).myEach(el => 
+                accum = callback(accum, el)
+                )
+                return accum;  
+        }  
+}
 
